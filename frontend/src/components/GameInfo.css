@@ -1,0 +1,137 @@
+.game-info {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 400px;
+}
+
+.players {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.player.you {
+  color: #667eea;
+}
+
+.disc-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.player1-icon {
+  background: #ff4444;
+}
+
+.player2-icon {
+  background: #ffcc00;
+}
+
+.vs {
+  font-size: 20px;
+  font-weight: bold;
+  color: #999;
+}
+
+.turn-indicator {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.your-turn {
+  background: #4CAF50;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.opponent-turn {
+  background: #f0f0f0;
+  color: #666;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.game-result {
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.game-result.win {
+  background: #4CAF50;
+  color: white;
+}
+
+.game-result.lose {
+  background: #f44336;
+  color: white;
+}
+
+.game-result.draw {
+  background: #ff9800;
+  color: white;
+}
+
+.message {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.bot-thinking {
+  animation: pulse 1s infinite;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@media (max-width: 768px) {
+  .game-info {
+    min-width: 300px;
+    padding: 15px;
+  }
+  
+  .players {
+    gap: 15px;
+  }
+  
+  .player {
+    font-size: 16px;
+  }
+}
+

@@ -1,0 +1,81 @@
+.game-board {
+  background: #0066cc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+
+.board-row {
+  display: flex;
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  background: #0066cc;
+  margin: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell.clickable {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cell.clickable:hover {
+  background: #0055aa;
+}
+
+.cell.disabled {
+  cursor: not-allowed;
+}
+
+.disc {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.disc.player1 {
+  background: #ff4444;
+}
+
+.disc.player2 {
+  background: #ffcc00;
+}
+
+.disc-inner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent);
+}
+
+@media (max-width: 768px) {
+  .cell {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+  }
+  
+  .disc {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .disc-inner {
+    width: 36px;
+    height: 36px;
+  }
+}
