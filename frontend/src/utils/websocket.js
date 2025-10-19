@@ -4,11 +4,16 @@ let reconnectTimeout = null;
 let isIntentionalClose = false;
 let isConnecting = false;
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'ws://localhost:3001';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
 const WS_URL = BACKEND_URL.replace('http://', 'ws://').replace('https://', 'wss://');
 
+console.log('🌐 Environment:', {
+  REACT_APP_BACKEND_URL: process.env.REACT_APP_BACKEND_URL,
+  BACKEND_URL: BACKEND_URL,
+  WS_URL: WS_URL
+});
+
 export function connectWebSocket(onMessage) {
-  // Prevent multiple simultaneous connections
   if (isConnecting || (ws && ws.readyState === WebSocket.OPEN)) {
     console.log('⚠️ WebSocket already connected or connecting');
     return ws;
@@ -18,17 +23,16 @@ export function connectWebSocket(onMessage) {
   messageHandler = onMessage;
   isIntentionalClose = false;
 
-  // Clear any pending reconnect
   if (reconnectTimeout) {
     clearTimeout(reconnectTimeout);
     reconnectTimeout = null;
   }
 
-  console.log('🔌 Connecting WebSocket...');
+  console.log('🔌 Connecting to WebSocket:', WS_URL);
   ws = new WebSocket(WS_URL);
 
   ws.onopen = () => {
-    console.log('✅ WebSocket connected');
+    console.log('✅ WebSocket connected to:', WS_URL);
     isConnecting = false;
   };
 
@@ -46,6 +50,7 @@ export function connectWebSocket(onMessage) {
 
   ws.onerror = (error) => {
     console.error('❌ WebSocket error:', error);
+    console.error('Was trying to connect to:', WS_URL);
     isConnecting = false;
   };
 
@@ -53,7 +58,6 @@ export function connectWebSocket(onMessage) {
     console.log('🔌 WebSocket disconnected');
     isConnecting = false;
 
-    // Only reconnect if NOT intentionally closed
     if (!isIntentionalClose) {
       console.log('⏳ Will reconnect in 5 seconds...');
       reconnectTimeout = setTimeout(() => {
